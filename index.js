@@ -18,13 +18,14 @@ console.error('Unable to connect to the database:', err);
 const app = express();
 const port = process.env.PORT || 3000;
 const api = require('./routes/test');
-
+const api2 = require('./routes/uploadImage');
 
 //setup middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use('/media', express.static('uploads')); // uploaded files are now available under /media url
-app.use('/', api);
+app.use('/media', express.static('uploads')); // uploaded files are now available under /media url
+app.use('/api', api);
+app.use('/api2',api2);
 
 
 // if requested url is not from above show error
